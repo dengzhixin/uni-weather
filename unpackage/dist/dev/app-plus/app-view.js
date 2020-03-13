@@ -248,51 +248,44 @@ var render = function() {
             { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
             [_vm._v("今天有小雨，出门记得带伞哦")]
           ),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-            [
-              _c("v-uni-canvas", {
-                staticClass: _vm._$g(9, "sc"),
-                attrs: {
-                  "canvas-id": "canvasTemperature",
-                  id: "canvasTemperature",
-                  _i: 9
-                },
-                on: {
-                  touchstart: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                }
-              })
-            ],
-            1
-          )
+          _c("v-uni-canvas", {
+            staticClass: _vm._$g(8, "sc"),
+            attrs: {
+              "canvas-id": "canvasTemperature",
+              id: "canvasTemperature",
+              _i: 8
+            },
+            on: {
+              touchstart: function($event) {
+                return _vm.$handleViewEvent($event)
+              }
+            }
+          })
         ],
         1
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+        { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+            { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
+                { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
                 [
                   _c("v-uni-image", {
-                    staticClass: _vm._$g(13, "sc"),
+                    staticClass: _vm._$g(12, "sc"),
                     attrs: {
                       src: "../../static/icons/weather_icon_1.svg",
-                      _i: 13
+                      _i: 12
                     }
                   }),
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                    { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
                     [_vm._v("Wenday")]
                   )
                 ],
@@ -300,16 +293,16 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+                { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
                 [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+                    { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
                     [_vm._v("28°C")]
                   ),
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
+                    { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
                     [_vm._v("30°C")]
                   )
                 ],
@@ -318,6 +311,10 @@ var render = function() {
             ],
             1
           ),
+          _c("v-uni-view", {
+            staticClass: _vm._$g(17, "sc"),
+            attrs: { _i: 17 }
+          }),
           _c("v-uni-view", {
             staticClass: _vm._$g(18, "sc"),
             attrs: { _i: 18 }
@@ -333,10 +330,6 @@ var render = function() {
           _c("v-uni-view", {
             staticClass: _vm._$g(21, "sc"),
             attrs: { _i: 21 }
-          }),
-          _c("v-uni-view", {
-            staticClass: _vm._$g(22, "sc"),
-            attrs: { _i: 22 }
           })
         ],
         1
@@ -434,7 +427,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../../Appli
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n:not(not) {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n.containner {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  -webkit-flex-wrap: nowrap;\n          flex-wrap: nowrap;\n  width: 100vw;\n  height: 100vh;\n  overflow: hidden;\n}\n.containner .top {\n    width: 100%;\n    background: -webkit-linear-gradient(#4c8ce2, #83c0f3);\n    background: linear-gradient(#4c8ce2, #83c0f3);\n    padding: 20rpx;\n    text-align: center;\n    color: #FFFFFF;\n}\n.containner .top .title {\n      font-size: 20pt;\n}\n.containner .top .time {\n      opacity: 0.6;\n      font-size: 14pt;\n}\n.containner .top .weather {\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-justify-content: space-around;\n              justify-content: space-around;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n}\n.containner .top .weather .temperature {\n        font-size: 40pt;\n}\n.containner .top .weather .weatherIcon {\n        width: 300rpx;\n        height: 300rpx;\n        margin: 30rpx 0;\n}\n.containner .top .tip {\n      font-size: 14pt;\n      opacity: 0.6;\n}\n.containner .top .canvasBox {\n      width: 100%;\n      height: 160upx;\n      overflow: hidden;\n}\n.containner .top .canvasBox .canvasTemperature {\n        width: 100%;\n        height: 200upx;\n        background-color: transparent;\n}\n.containner .list {\n    width: 100%;\n    -webkit-box-flex: 1;\n    -webkit-flex: 1;\n            flex: 1;\n    overflow-y: scroll;\n}\n.containner .list .list_item {\n      height: 150rpx;\n      width: 100%;\n      color: #000000;\n      background-color: #FFFFFF;\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-box-pack: justify;\n      -webkit-justify-content: space-between;\n              justify-content: space-between;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n      padding: 20rpx;\n}\n.containner .list .list_item .left {\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: flex;\n        -webkit-box-align: center;\n        -webkit-align-items: center;\n                align-items: center;\n}\n.containner .list .list_item .left .weatherIcon {\n          width: 100rpx;\n          height: 100rpx;\n}\n.containner .list .list_item .left .weakday {\n          padding-left: 40rpx;\n}\n.containner .list .list_item .right .min-temperature {\n        padding-right: 20rpx;\n}\n.containner .list .list_item:nth-child(2n) {\n      background-color: #F6F9FE;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n:not(not) {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n.containner {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  -webkit-flex-wrap: nowrap;\n          flex-wrap: nowrap;\n  width: 100vw;\n  height: 100vh;\n  overflow: hidden;\n}\n.containner .top {\n    width: 100%;\n    background: -webkit-linear-gradient(#4c8ce2, #83c0f3);\n    background: linear-gradient(#4c8ce2, #83c0f3);\n    padding: 20rpx;\n    text-align: center;\n    color: #FFFFFF;\n}\n.containner .top .title {\n      font-size: 20pt;\n}\n.containner .top .time {\n      opacity: 0.6;\n      font-size: 14pt;\n}\n.containner .top .weather {\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-justify-content: space-around;\n              justify-content: space-around;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n}\n.containner .top .weather .temperature {\n        font-size: 40pt;\n}\n.containner .top .weather .weatherIcon {\n        width: 300rpx;\n        height: 300rpx;\n        margin: 30rpx 0;\n}\n.containner .top .tip {\n      font-size: 14pt;\n      opacity: 0.6;\n}\n.containner .top .canvasTemperature {\n      width: 100%;\n      height: 200upx;\n      background-color: transparent;\n}\n.containner .list {\n    width: 100%;\n    -webkit-box-flex: 1;\n    -webkit-flex: 1;\n            flex: 1;\n    overflow-y: scroll;\n}\n.containner .list .list_item {\n      height: 150rpx;\n      width: 100%;\n      color: #000000;\n      background-color: #FFFFFF;\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-box-pack: justify;\n      -webkit-justify-content: space-between;\n              justify-content: space-between;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n      padding: 20rpx;\n}\n.containner .list .list_item .left {\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: flex;\n        -webkit-box-align: center;\n        -webkit-align-items: center;\n                align-items: center;\n}\n.containner .list .list_item .left .weatherIcon {\n          width: 100rpx;\n          height: 100rpx;\n}\n.containner .list .list_item .left .weakday {\n          padding-left: 40rpx;\n}\n.containner .list .list_item .right .min-temperature {\n        padding-right: 20rpx;\n}\n.containner .list .list_item:nth-child(2n) {\n      background-color: #F6F9FE;\n}\n", ""]);
 
 // exports
 

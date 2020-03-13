@@ -80,15 +80,10 @@
       font-size: 14pt;
       opacity: 0.6;
 }
-.containner .top .canvasBox {
+.containner .top .canvasTemperature {
       width: 100%;
-      height: 160rpx;
-      overflow: hidden;
-}
-.containner .top .canvasBox .canvasTemperature {
-        width: 100%;
-        height: 200rpx;
-        background-color: transparent;
+      height: 200rpx;
+      background-color: transparent;
 }
 .containner .list {
     width: 100%;

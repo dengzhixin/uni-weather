@@ -8,9 +8,7 @@
 				<image class="weatherIcon" src="../../static/icons/weather_icon_1.svg"></image>
 			</view>
 			<text class="tip">今天有小雨，出门记得带伞哦</text>
-			<view class="canvasBox">
-				<canvas canvas-id="canvasTemperature" id="canvasTemperature" class="canvasTemperature" @touchstart="showChart"></canvas>
-			</view>
+			<canvas canvas-id="canvasTemperature" id="canvasTemperature" class="canvasTemperature" @touchstart="showChart"></canvas>
 		</view>
 
 		<view class="list">
@@ -51,7 +49,7 @@
 					that.showChart()
 				}
 			})
-			
+
 
 		},
 		methods: {
@@ -61,11 +59,11 @@
 					categories: ['星期一', '星期二', '星期三', '星期', '星期二', '星期二'],
 					series: [{
 						name: 'min',
-						data: [22, 23, 25, 26, 28, 26],
+						data: [25, 26, 25, 26, 28, 26],
 						color: '#FFFFFF'
 					}, {
 						name: 'max',
-						data: [30, 31, 32, 29, 29, 30],
+						data: [30, 31, 32, 31, 32, 32],
 						color: '#FFFFFF'
 					}]
 				}
@@ -78,7 +76,6 @@
 					},
 					dataLabel: false,
 					dataPointShape: false,
-					padding:[0,0,0,0],
 					categories: chartData.categories,
 					series: chartData.series,
 					animation: true,
@@ -92,9 +89,9 @@
 					},
 					width: uni.upx2px(710),
 					height: uni.upx2px(200),
-					extra:{
-						line:{
-							type:'curve'
+					extra: {
+						line: {
+							type: 'curve'
 						}
 					}
 				});
@@ -162,18 +159,14 @@
 				font-size: 14pt;
 				opacity: 0.6;
 			}
-			.canvasBox{
+
+			.canvasTemperature {
 				width: 100%;
-				height: 160upx;
-				overflow: hidden;
-				.canvasTemperature {
-					width: 100%;
-					height: 200upx;
-					background-color: rgba(0, 0, 0, 0);
-				}
+				height: 200upx;
+				background-color: rgba(0, 0, 0, 0);
 			}
-			
-			
+
+
 		}
 
 		.list {

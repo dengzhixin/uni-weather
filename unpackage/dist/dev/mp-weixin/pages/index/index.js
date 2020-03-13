@@ -177,8 +177,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 var _uCharts = _interopRequireDefault(__webpack_require__(/*! @/components/u-charts/u-charts.js */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -213,16 +211,15 @@ var _uCharts = _interopRequireDefault(__webpack_require__(/*! @/components/u-cha
 //
 //
 //
-//
-//
-var _default = { data: function data() {return { title: 'Hello' };}, onLoad: function onLoad() {var that = this;uni.getLocation({ type: 'wgs84', success: function success(res) {console.log(res);that.showChart();} });}, methods: { showChart: function showChart() {var _self = this;var chartData = { categories: ['星期一', '星期二', '星期三', '星期', '星期二', '星期二'], series: [{ name: 'min', data: [22, 23, 25, 26, 28, 26], color: '#FFFFFF' }, { name: 'max', data: [30, 31, 32, 29, 29, 30], color: '#FFFFFF' }] };var canvasTemperature = new _uCharts.default({ $this: _self, canvasId: 'canvasTemperature',
+var _default = { data: function data() {return { title: 'Hello' };}, onLoad: function onLoad() {var that = this;uni.getLocation({ type: 'wgs84', success: function success(res) {console.log(res);that.showChart();} });}, methods: { showChart: function showChart() {var _self = this;var chartData = { categories: ['星期一', '星期二', '星期三', '星期', '星期二', '星期二'], series: [{ name: 'min', data: [25, 26, 25, 26, 28, 26], color: '#FFFFFF' }, { name: 'max', data: [30, 31, 32, 31, 32, 32], color: '#FFFFFF' }] };var canvasTemperature = new _uCharts.default({
+        $this: _self,
+        canvasId: 'canvasTemperature',
         type: 'line',
         legend: {
           show: false },
 
         dataLabel: false,
         dataPointShape: false,
-        padding: [0, 0, 0, 0],
         categories: chartData.categories,
         series: chartData.series,
         animation: true,
