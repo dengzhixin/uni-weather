@@ -8525,7 +8525,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "无空天气", "navigationBarBackgroundColor": "#4284D0", "backgroundColor": "#F6F6F6" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {} }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "无空天气", "navigationBarBackgroundColor": "#4284D0", "backgroundColor": "#F6F6F6" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -8670,11 +8670,7 @@ function normalizeComponent (
 /* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */
+/* 21 */
 /*!*************************************************************************************************!*\
   !*** /Users/dengzhixin/Documents/project/uni-app/hello-weather/components/u-charts/u-charts.js ***!
   \*************************************************************************************************/
@@ -14316,6 +14312,113 @@ if ( true && typeof module.exports === "object") {
   //export default Charts;//建议使用nodejs的module导出方式，如报错请使用export方式导出
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 22 */
+/*!*********************************************************************************!*\
+  !*** /Users/dengzhixin/Documents/project/uni-app/hello-weather/api/location.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGeodecode = getGeodecode;var _request = __webpack_require__(/*! ./request.js */ 23);
+
+
+function getGeodecode(longitude, latitude) {
+  return new Promise(function (resolve, reject) {
+    (0, _request.request)({
+      url: '/location/geodecode',
+      data: {
+        longitude: longitude,
+        latitude: latitude,
+        APPKEY: 'NSSFSUUR3R9T' } }).
+
+    then(function (data) {
+      resolve(data);
+    }).catch(function (e) {
+      reject(e);
+    });
+  });
+
+}
+
+/***/ }),
+/* 23 */
+/*!********************************************************************************!*\
+  !*** /Users/dengzhixin/Documents/project/uni-app/hello-weather/api/request.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = request;var PRE_HTTP = "https://api.gugudata.com";
+function request(_ref)
+
+
+
+{var url = _ref.url,_ref$method = _ref.method,method = _ref$method === void 0 ? 'get' : _ref$method,data = _ref.data;
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: PRE_HTTP + url,
+      method: method,
+      data: data,
+      success: function success(data) {
+        resolve(data);
+      }, fail: function fail(e) {
+        reject(e);
+      } });
+
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 24 */
+/*!************************************************************************************!*\
+  !*** /Users/dengzhixin/Documents/project/uni-app/hello-weather/api/weatherinfo.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getweatherinfoPre = getweatherinfoPre;exports.getweatherinfo = getweatherinfo;var _request = __webpack_require__(/*! ./request.js */ 23);
+
+
+var APPKEY = "7X5ZZDY2MDRM";
+function getweatherinfoPre(keyword) {
+  return new Promise(function (resolve, reject) {
+    (0, _request.request)({
+      url: '/weather/weatherinfo/region',
+      data: {
+        keyword: keyword,
+        appkey: APPKEY } }).
+
+    then(function (data) {
+      resolve(data);
+    }).catch(function (e) {
+      reject(e);
+    });
+  });
+
+}
+function getweatherinfo(code, days) {
+  return new Promise(function (resolve, reject) {
+    (0, _request.request)({
+      url: '/weather/weatherinfo',
+      data: {
+        code: code,
+        days: days,
+        appkey: APPKEY } }).
+
+    then(function (data) {
+      resolve(data);
+    }).catch(function (e) {
+      reject(e);
+    });
+  });
+
+}
 
 /***/ })
 ]]);

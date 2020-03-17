@@ -1,74 +1,169 @@
 <template>
-	<view class="containner">
+	<view class="containner" v-if="weathers.length>0">
 		<view class="top">
-			<view class="title">大坪小学</view>
-			<view class="time">12:30pm</view>
+			<view class="title">{{title +' · '+ weathers[0].weatherInfo}}</view>
+			<view class="time">{{time | timeFormat}}更新</view>
 			<view class="weather">
-				<text class="temperature">14°C</text>
+				<text class="temperature">{{currentTemperature}}°C</text>
 				<image class="weatherIcon" src="../../static/icons/weather_icon_1.svg"></image>
 			</view>
-			<text class="tip">今天有小雨，出门记得带伞哦</text>
+			<text class="tip">{{tip}}</text>
 			<canvas canvas-id="canvasTemperature" id="canvasTemperature" class="canvasTemperature" @touchstart="showChart"></canvas>
 		</view>
 
 		<view class="list">
-			<view class="list_item">
-
-				<view class="left">
-					<image class="weatherIcon" src="../../static/icons/weather_icon_1.svg"></image>
-					<text class="weakday">Wenday</text>
-				</view>
-				<view class="right">
-					<text class="min-temperature">28°C</text>
-					<text class="max-temperature">30°C</text>
+			<view v-for="(weather,index) in weathers" :key="'weather'+index">
+				<view v-if="index !=0" class="list_item">
+					<view class="left">
+						<image class="weatherIcon" src="../../static/icons/weather_icon_1.svg"></image>
+						<text class="weakday">{{weather.date | weakdayFormat}}</text>
+					</view>
+					<view class="right">
+						<text class="min-temperature">{{weather.min}}°C</text>
+						<text class="max-temperature">{{weather.max}}°C</text>
+					</view>
 				</view>
 			</view>
-			<view class="list_item"></view>
-			<view class="list_item"></view>
-			<view class="list_item"></view>
-			<view class="list_item"></view>
-			<view class="list_item"></view>
 		</view>
 	</view>
 </template>
 
 <script>
 	import uCharts from '@/components/u-charts/u-charts.js';
+	import {
+		getGeodecode
+	} from '@/api/location.js'
+	import {
+		getweatherinfoPre,
+		getweatherinfo
+	} from '@/api/weatherinfo.js'
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: '',
+				time: '',
+				tip: '  ',
+				currentTemperature:'26',
+				weathers: []
+
+			}
+		},
+		filters: {
+			timeFormat: (time) => {
+				let date = new Date(time.replace(new RegExp('-', 'gm'), '/'))
+				let str = date.Format('HH:mm') +( date.getHours()<=12 ?'':'pm')
+				return str
+			},
+			weakdayFormat: (time) => {
+				let data = new Date(time)
+				let days = data.getDay()
+				switch (days) {
+					case 1:
+						days = '星期一';
+						break;
+					case 2:
+						days = '星期二';
+						break;
+					case 3:
+						days = '星期三';
+						break;
+					case 4:
+						days = '星期四';
+						break;
+					case 5:
+						days = '星期五';
+						break;
+					case 6:
+						days = '星期六';
+						break;
+					case 0:
+						days = '星期日';
+						break;
+				}
+				let today = new Date()
+				if (data.getDay() == today.getDay() + 1) {
+					days = "明天"
+				}
+				return days
 			}
 		},
 		onLoad() {
+			this.dataPrototype()
 			let that = this
 			uni.getLocation({
 				type: 'wgs84',
-				success(res) {
-					console.log(res)
-					that.showChart()
+				success(data) {
+					getGeodecode(data.longitude, data.latitude).then((res) => {
+						that.title = res.data.Data[0].District
+						getweatherinfoPre(that.title).then((res) => {
+							let code = res.data.Data[0].Code
+							getweatherinfo(code, 7).then((res) => {
+								console.log(res)
+								let data = res.data.Data[0]
+								that.tip = data.LifeHelperWear.HelperContent
+								that.time = data.WeatherDataGenerateDateTime
+								that.currentTemperature=parseInt((data.TemperatureLow+data.TemperatureHigh)/2)
+								that.weathers = res.data.Data.map((w) => {
+									return {
+										min: w.TemperatureLow,
+										max: w.TemperatureHigh,
+										date: w.WeatherDate,
+										weatherInfo: w.WeatherInfo
+									}
+								})
+								that.$nextTick(function(){
+									that.showChart()
+								})
+							})
+						})
+					}).catch((e) => {
+						console.log(e)
+					})
 				}
 			})
 
 
+			
+
 		},
 		methods: {
+			dataPrototype(){
+				
+				Date.prototype.Format = function (fmt) {
+				    var o = {
+				        "M+": this.getMonth() + 1, //月份 
+				        "d+": this.getDate(), //日 
+				        "H+": this.getHours(), //小时 
+				        "m+": this.getMinutes(), //分 
+				        "s+": this.getSeconds(), //秒 
+				        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+				        "S": this.getMilliseconds() //毫秒 
+				    };
+				    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+				    for (var k in o)
+				    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+				    return fmt;
+				}
+				
+			},
 			showChart() {
-				let _self = this
+				let that = this
+
+				console.log(Array.from(this.weathers))
 				let chartData = {
-					categories: ['星期一', '星期二', '星期三', '星期', '星期二', '星期二'],
+					categories: ['星期一', '星期二', '星期三', '星期', '星期二', '星期二','星期二'],
 					series: [{
 						name: 'min',
-						data: [25, 26, 25, 26, 28, 26],
+						data: this.weathers.map(w => w.min),
 						color: '#FFFFFF'
 					}, {
 						name: 'max',
-						data: [30, 31, 32, 31, 32, 32],
+						data: this.weathers.map(w => w.max),
 						color: '#FFFFFF'
 					}]
 				}
 				let canvasTemperature = new uCharts({
-					$this: _self,
+					$this: that,
 					canvasId: 'canvasTemperature',
 					type: 'line',
 					legend: {
@@ -91,7 +186,8 @@
 					height: uni.upx2px(200),
 					extra: {
 						line: {
-							type: 'curve'
+							type: 'curve',
+							width:4
 						}
 					}
 				});
@@ -129,7 +225,7 @@
 			padding: 20rpx;
 			text-align: center;
 			color: $text-color;
-
+			position: relative;
 			.title {
 				font-size: 20pt;
 			}
@@ -153,6 +249,7 @@
 					height: 300rpx;
 					margin: 30rpx 0;
 				}
+
 			}
 
 			.tip {
@@ -161,9 +258,15 @@
 			}
 
 			.canvasTemperature {
+				position: absolute;
+				bottom: 0;
+				left: 0;
 				width: 100%;
 				height: 200upx;
 				background-color: rgba(0, 0, 0, 0);
+				opacity: 0.1;
+				transform: scale(2);
+				
 			}
 
 
@@ -195,6 +298,12 @@
 
 					.weakday {
 						padding-left: 40rpx;
+						padding-right: 40rpx;
+						font-size: 20pt;
+					}
+
+					.weatherInfo {
+						opacity: 0.4;
 					}
 				}
 
