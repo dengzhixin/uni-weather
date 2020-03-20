@@ -5,7 +5,7 @@
 			<view class="time">{{time | timeFormat}}更新</view>
 			<view class="weather">
 				<text class="temperature">{{currentTemperature}}°C</text>
-				<image class="weatherIcon" src="../../static/icons/weather_icon_1.svg"></image>
+				<image class="weatherIcon" :src="'../../static/icons/'+weathers[0].weatherInfo+'.svg'"></image>
 			</view>
 			<text class="tip">{{tip}}</text>
 			<canvas canvas-id="canvasTemperature" id="canvasTemperature" class="canvasTemperature" @touchstart="showChart"></canvas>
@@ -15,7 +15,7 @@
 			<view v-for="(weather,index) in weathers" :key="'weather'+index">
 				<view v-if="index !=0" class="list_item">
 					<view class="left">
-						<image class="weatherIcon" src="../../static/icons/weather_icon_1.svg"></image>
+						<image class="weatherIcon" :src="'../../static/icons/'+weather.weatherInfo+'.svg'"></image>
 						<text class="weakday">{{weather.date | weakdayFormat}}</text>
 					</view>
 					<view class="right">

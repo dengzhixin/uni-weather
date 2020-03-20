@@ -239,10 +239,7 @@ var render = function() {
                   ),
                   _c("v-uni-image", {
                     staticClass: _vm._$g(6, "sc"),
-                    attrs: {
-                      src: "../../static/icons/weather_icon_1.svg",
-                      _i: 6
-                    }
+                    attrs: { src: _vm._$g(6, "a-src"), _i: 6 }
                   })
                 ],
                 1
@@ -294,7 +291,7 @@ var render = function() {
                               _c("v-uni-image", {
                                 staticClass: _vm._$g("13-" + $30, "sc"),
                                 attrs: {
-                                  src: "../../static/icons/weather_icon_1.svg",
+                                  src: _vm._$g("13-" + $30, "a-src"),
                                   _i: "13-" + $30
                                 }
                               }),
