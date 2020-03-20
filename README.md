@@ -4,5 +4,7 @@
 - 数据来源：[咕咕数据](https://www.gugudata.com/)
 - [源码传送门](https://github.com/dengzhixin/uni-weather)
 <center>
-<img src="https://dengzhixin-halo.oss-cn-shenzhen.aliyuncs.com/halo/23851584421669_.pic_1584421724763.jpg?x-oss-process=style/pic"/>
+
+![image.png](https://dengzhixin-halo.oss-cn-shenzhen.aliyuncs.com/halo/image_1584725367986.png?x-oss-process=style/pic)
+
 </center>
